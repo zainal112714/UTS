@@ -1,120 +1,55 @@
 import React from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Button } from 'native-base';
-import COLORS from '../constants/colors';
+import { ImageBackground } from 'react-native';
+import { Button, Text, View } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
+import COLORS from '../constants/colors';
 
 const Welcome = () => {
   const navigation = useNavigation();
+  const backgroundImage = require('../assets/toga.jpg');
 
   return (
-    <LinearGradient
-      style={{
-        flex: 1,
-      }}
-      colors={[COLORS.secondary, COLORS.primary]}
-    >
-      <View style={{ flex: 1 }}>
-        <View>
-          <Image
-            source={require('../assets/hero1.jpg')}
-            style={{
-              height: 100,
-              width: 100,
-              borderRadius: 20,
-              position: 'absolute',
-              top: 10,
-              transform: [
-                { translateX: 20 },
-                { translateY: 50 },
-                { rotate: '-15deg' },
-              ],
-            }}
-          />
+    <ImageBackground source={backgroundImage} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View alignItems="center">
+        <Text fontSize="5xl" color={COLORS.white} mt={40}>
+          Mahasiswaku
+        </Text>
 
-          {/* Add other images and their styles here */}
+        <View space={2} alignItems="center">
+          <Text fontSize="2xl" color={COLORS.white}>
+            Plan Your
+          </Text>
         </View>
 
-        {/* Content */}
-        <View
-          style={{
-            paddingHorizontal: 22,
-            position: 'absolute',
-            top: 400,
-            width: '100%',
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 50,
-              fontWeight: '800',
-              color: COLORS.white,
-            }}
-          >
-            Let's Get
-          </Text>
-          <Text
-            style={{
-              fontSize: 46,
-              fontWeight: '800',
-              color: COLORS.white,
-            }}
-          >
-            Started
-          </Text>
+        <Text fontSize="3xl" color={COLORS.white} mr={6} mt={500}>
+          Dreams and Career
+        </Text>
 
-          <View style={{ marginVertical: 22 }}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: COLORS.white,
-                marginVertical: 4,
-              }}
-            >
-              Connect with each other with chatting
-            </Text>
-            <Text style={{ fontSize: 16, color: COLORS.white }}>
-              Calling, Enjoy Safe and private texting
-            </Text>
-          </View>
-
+        <View flex={1} justifyContent="flex-end" marginBottom={32}>
           <Button
             onPress={() => navigation.navigate('Signup')}
-            style={{
-              marginTop: 22,
-              width: '100%',
-            }}
+            width={80}
+            height={10}
+            backgroundColor={COLORS.red}
+            rounded={20}
+            mt={5}
+            my={3}
           >
-            Join Now
+            Continue
           </Button>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 12,
-              justifyContent: 'center',
-            }}
+          <Text
+            onPress={() => navigation.navigate('Login')}
+            fontSize={16}
+            color={COLORS.white}
+            fontWeight="bold"
+            marginTop={5}
+            marginRight={20}
           >
-            <Text style={{ fontSize: 16, color: COLORS.white }}>
-              Already have an account ?
-            </Text>
-            <Pressable onPress={() => navigation.navigate('Login')}>
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: COLORS.white,
-                  fontWeight: 'bold',
-                  marginLeft: 4,
-                }}
-              >
-                Login
-              </Text>
-            </Pressable>
-          </View>
+            Already have an account? Login
+          </Text>
         </View>
       </View>
-    </LinearGradient>
+    </ImageBackground>
   );
 };
 

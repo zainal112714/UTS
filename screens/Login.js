@@ -1,25 +1,32 @@
 import React from 'react';
 import { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, Alert } from 'react-native';
 import { View, Text, Input, CheckBox, Button, HStack, Pressable, Image } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../constants/colors';
+import center from 'native-base/src/theme/components/center';
 
 const Login = () => {
   const navigation = useNavigation();
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const handleLoginPress = () => {
+    Alert.alert('Login berhasil', 'Selamat, Anda telah berhasil login!');
+  };
 
   return (
     <SafeAreaView flex={1} bg={COLORS.white}>
       <View flex={1} mx={4} my={6}>
-        <View my={6}>
-          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.black}>
-            Hi Welcome Back ! 👋
+        <View my={6} style={{ alignItems: 'center'}}>
+          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.red} textAlign= 'center'>
+            Mahasiswaku
+          </Text>
+          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.black} marginTop={10} textAlign={'left'}>
+            Sing In
           </Text>
           <Text fontSize="lg" color={COLORS.black}>
-            Hello again you have been missed!
+            Enter your registered email address or phone number to log in
           </Text>
         </View>
 
@@ -53,15 +60,18 @@ const Login = () => {
           </HStack>
         </View>
 
-        <HStack my={2} alignItems="center">
+        {/* <View style={{ flexDirection:'row', alignItems: 'center', marginVertical: 2}}>
           <CheckBox value={isChecked} onChange={() => setIsChecked(!isChecked)} colorScheme={COLORS.primary} />
           <Text>Remember Me</Text>
-        </HStack>
+        </View> */}
+        
 
         <Button
           my={4}
           colorScheme={COLORS.primary}
-          onPress={() => {}}
+          backgroundColor={COLORS.red}
+          rounded={10}
+          onPress={handleLoginPress}
         >
           Login
         </Button>

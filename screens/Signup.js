@@ -1,27 +1,48 @@
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, Alert } from 'react-native';
+import { ScrollView } from 'native-base';
 import { View, Text, Input, Checkbox, Button, HStack, Pressable, Image } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import COLORS from '../constants/colors';
 import { useNavigation } from '@react-navigation/native';
+import Center from 'native-base/src/theme/components/center';
 
 const Signup = () => {
   const navigation = useNavigation();
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const hanleSignUpPress = () => {
+    Alert.alert('Registrasi berhasil', 'Selamat, Anda telah berhasil melakukan registrasi!');
+  }
 
   return (
     <SafeAreaView flex={1} bg={COLORS.white}>
-      <View flex={1} mx={4} my={6}>
+     <ScrollView contentContainerStyle={{ flexGrow: 1}}>
+     <View flex={1} mx={4} my={6}>
         <View my={6}>
-          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.black}>
+          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.red} textAlign= 'center'>
+            Mahasiswaku
+          </Text>
+          <Text fontSize="2xl" fontWeight="bold" my={2} color={COLORS.black} marginTop={10}>
             Create Account
           </Text>
           <Text fontSize="lg" color={COLORS.black}>
-            Connect with your friend today!
+            Please enter your data to create an account
           </Text>
         </View>
 
+        <View my={4}>
+          <Text fontSize="lg" fontWeight={400} my={2}>
+            Full Name
+          </Text>
+          <Input
+            variant="underlined"
+            placeholder="Enter your email address"
+            keyboardType="email-address"
+            borderColor={COLORS.black}
+            _focus={{ borderColor: COLORS.black }}
+          />
+        </View>
         <View my={4}>
           <Text fontSize="lg" fontWeight={400} my={2}>
             Email address
@@ -34,29 +55,36 @@ const Signup = () => {
             _focus={{ borderColor: COLORS.black }}
           />
         </View>
-
         <View my={4}>
           <Text fontSize="lg" fontWeight={400} my={2}>
-            Mobile Number
+            NIM
           </Text>
-          <HStack space={2} alignItems="center" borderColor={COLORS.black} borderWidth={1} borderRadius={8}>
-            <Input
-              placeholder="+91"
-              placeholderTextColor={COLORS.black}
-              keyboardType="numeric"
-              width="12%"
-              borderRightWidth={1}
-              borderLeftColor={COLORS.grey}
-            />
-            <Input placeholder="Enter your phone number" placeholderTextColor={COLORS.black} keyboardType="numeric" width="80%" />
-          </HStack>
+          <Input
+            variant="underlined"
+            placeholder="Enter your email address"
+            keyboardType="email-address"
+            borderColor={COLORS.black}
+            _focus={{ borderColor: COLORS.black }}
+          />
+        </View>
+        <View my={4}>
+          <Text fontSize="lg" fontWeight={400} my={2}>
+            Program Studi
+          </Text>
+          <Input
+            variant="underlined"
+            placeholder="Enter your email address"
+            keyboardType="email-address"
+            borderColor={COLORS.black}
+            _focus={{ borderColor: COLORS.black }}
+          />
         </View>
 
         <View my={4}>
           <Text fontSize="lg" fontWeight={400} my={2}>
             Password
           </Text>
-          <HStack space={2} alignItems="center" borderColor={COLORS.black} borderWidth={1} borderRadius={8}>
+          <HStack space={3} alignItems="center" borderColor={COLORS.black} borderWidth={1} borderRadius={8}>
             <Input
               placeholder="Enter your password"
               placeholderTextColor={COLORS.black}
@@ -64,7 +92,7 @@ const Signup = () => {
               flex={1}
             />
             <Pressable onPress={() => setIsPasswordShown(!isPasswordShown)}>
-              <Ionicons name={isPasswordShown ? 'eye-off' : 'eye'} size={24} color={COLORS.black} />
+              <Ionicons name={isPasswordShown ? 'eye-off' : 'eye'} size={26} color={COLORS.black} />
             </Pressable>
           </HStack>
         </View>
@@ -77,12 +105,14 @@ const Signup = () => {
         <Button
           my={4}
           colorScheme={COLORS.secondary}
-          onPress={() => {}}
+          backgroundColor={COLORS.red}
+          rounded={20}
+          onPress={hanleSignUpPress}
         >
           Sign Up
         </Button>
 
-        <HStack alignItems="center" my={10}>
+        <HStack alignItems="center" my={5}>
           <View flex={1} h={1} bg={COLORS.grey} mx={2} />
           <Text fontSize="lg">Or Sign up with</Text>
           <View flex={1} h={1} bg={COLORS.grey} mx={2} />
@@ -117,6 +147,7 @@ const Signup = () => {
           </Pressable>
         </HStack>
       </View>
+     </ScrollView>
     </SafeAreaView>
   );
 };
